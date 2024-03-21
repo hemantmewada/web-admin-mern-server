@@ -2,9 +2,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
 const cors = require("cors");
-const { authRouter } = require("./routes/authRoutes");
+const authRouter = require("./routes/authRoutes");
 const mongoDBconnect = require("./config/db");
 const contactRouter = require("./routes/contactRoutes");
+const adminRouter = require("./routes/admin/adminRoutes");
 
 // dotenv config
 dotenv.config();
@@ -26,9 +27,11 @@ app.get("/",(req, res) => {
 
 
 // other routes
-app.use("/api/auth", authRouter)
-app.use("/api/contact", contactRouter)
+app.use("/api/auth", authRouter);
+app.use("/api/contact", contactRouter);
 
+// admin routes
+app.use("/api/admin", adminRouter);
 
 mongoDBconnect().then(() => {
     app.listen(PORT,() => {

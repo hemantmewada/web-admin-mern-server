@@ -55,7 +55,7 @@ const loginController = async (req, res) => {
             });
         }
         if (user) {
-            return res.status(201).send({
+            return res.status(200).send({
                 status: true,
                 message: "Logged in Successfully.",
                 token: await user.createJWT(),
@@ -75,4 +75,19 @@ const loginController = async (req, res) => {
         });
     }
 }
-module.exports = {loginController, registerController}
+const getCurrentUserController = async (req, res) => {
+    try {
+        return res.json({
+            status: true,
+            message: "User details.",
+            data: req.body.user
+        });
+    } catch (error) {
+        return res.status(500).send({
+            status: false,
+            message: `Error in get current user API ${error}`,
+            error
+        });
+    }
+}
+module.exports = {loginController, registerController, getCurrentUserController}

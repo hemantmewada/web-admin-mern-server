@@ -10,7 +10,7 @@ const validationMiddleware = (schema) => async (req, res, next) => {
             status: false,
             message,
             validationError: error
-        })
+        });
     }
 }
 

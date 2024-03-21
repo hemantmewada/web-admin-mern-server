@@ -36,8 +36,8 @@ userSchema.methods.createJWT = async function() {
             },
             process.env.JWT_KEY,
             {
-                // expiresIn: "1d"
-                expiresIn: "60s"
+                expiresIn: "1d"
+                // expiresIn: "60s"
             }
         );
     } catch (error) {
